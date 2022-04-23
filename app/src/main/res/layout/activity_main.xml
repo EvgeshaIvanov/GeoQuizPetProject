@@ -78,7 +78,12 @@
                 android:text=""
                 android:textSize="30dp" />
         </LinearLayout>
-
+        <Button
+            android:visibility="gone"
+            android:id="@+id/show_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show Results"/>
     </LinearLayout>
 
 

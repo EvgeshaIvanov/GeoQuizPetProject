@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import com.example.geoquizpetproject.databinding.ActivityMainBinding
@@ -66,6 +67,11 @@ class MainActivity : AppCompatActivity() {
             nextButton.setOnClickListener {
                 if (currentIndex == 5) {
                     disableButton(nextButton)
+                    showButton.visibility = View.VISIBLE
+                    showButton.setOnClickListener {
+                        correct.text = correctAnswerCounter.toString()
+                        incorrect.text = incorrectAnswerCounter.toString()
+                    }
                 } else {
                     currentIndex = (currentIndex + 1) % questionBank.size
                     updateQuestion()
