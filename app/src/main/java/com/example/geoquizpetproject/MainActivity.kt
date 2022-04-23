@@ -12,7 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
-    val questionBank: List<Question> = mutableListOf(
+    private val questionBank: List<Question> = mutableListOf(
         Question(R.string.question_australia, true),
         Question(R.string.question_oceans, true),
         Question(R.string.question_mideast, false),
@@ -35,18 +35,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.apply {
             backAnswer.setOnClickListener {
-                when (currentIndex) {
-                    0 -> backAnswer.isClickable = false
-                    in 1..6 -> {
-                        backAnswer.isClickable = true
-                        currentIndex = (currentIndex - 1) % questionBank.size
-                        updateQuestion()
-
+                if (currentIndex in 0..5) {
+                    backAnswer.isEnabled = true
+                    currentIndex = (currentIndex - 1) % questionBank.size
+                    updateQuestion()
+                    if (questionBank[currentIndex].checkAnswer) {
+                        disableButton(trueButton)
+                        disableButton(falseButton)
+                    } else {
+                        enableButton(trueButton)
+                        enableButton(falseButton)
                     }
+                } else {
+                    backAnswer.isEnabled = false
                 }
+
             }
             trueButton.setOnClickListener {
                 checkAnswer(true)
@@ -59,11 +64,14 @@ class MainActivity : AppCompatActivity() {
                 disableButton(trueButton)
             }
             nextButton.setOnClickListener {
-                currentIndex = (currentIndex + 1) % questionBank.size
-                updateQuestion()
-                enableButton(trueButton)
-                enableButton(falseButton)
-
+                if (currentIndex == 5) {
+                    disableButton(nextButton)
+                } else {
+                    currentIndex = (currentIndex + 1) % questionBank.size
+                    updateQuestion()
+                    enableButton(trueButton)
+                    enableButton(falseButton)
+                }
             }
 
         }
@@ -76,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateQuestion() {
         val questionTextResId = questionBank[currentIndex].textResId
         binding.questionTextView.setText(questionTextResId)
-        var checkAnswer = questionBank[currentIndex].checkAnswer
+
 
     }
 
@@ -103,6 +111,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun disableButton(button: Button) {
         button.isEnabled = false
+        questionBank[currentIndex].checkAnswer = true
     }
 
     private fun enableButton(button: Button) {
@@ -112,6 +121,4 @@ class MainActivity : AppCompatActivity() {
     private fun checkButton(button: Button): Boolean {
         return button.isEnabled
     }
-
-
 }
