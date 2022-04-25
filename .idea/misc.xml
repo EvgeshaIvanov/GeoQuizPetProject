@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/most1/AndroidStudioProjects/GeoQuizPetProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/most1/AndroidStudioProjects/GeoQuizPetProject/app/src/main/res/layout/fragment_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/most1/AndroidStudioProjects/GeoQuizPetProject/app/src/main/res/layout/fragment_menu_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/most1/AndroidStudioProjects/GeoQuizPetProject/app/src/main/res/layout/fragment_play.xml" value="0.25" />
+        <entry key="..\:/Users/most1/AndroidStudioProjects/GeoQuizPetProject/app/src/main/res/layout/fragment_settings_fragment.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
